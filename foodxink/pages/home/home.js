@@ -67,7 +67,7 @@ Page({
             hour: "19:50"
           },
           location: {
-            ddress: "北京市朝阳区望京街10号",
+            address: "北京市朝阳区望京街10号",
             errMsg: "chooseLocation:ok",
             latitude: 39.99612,
             longitude: 116.58085,
@@ -294,13 +294,7 @@ Page({
   },
   //获取当前位置坐标
   getCenterLocation: function() {
-    this.mapCtx.getCenterLocation({
-      success: function(res) {
-        console.log(res.longitude)
-        console.log(res.latitude)
-        console.log(res)
-      }
-    })
+
   },
   //
 
