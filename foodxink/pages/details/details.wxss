@@ -20,7 +20,6 @@ html{
   line-height: 70rpx;
   font-size: 25rpx;
   margin-top: -10rpx;
-  width: 100%;
   height: 70rpx;
   background: #f5755a;
   display: flex;
