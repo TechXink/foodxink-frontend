@@ -34,8 +34,8 @@
 
       </view>
       <view class="appointment-list">
-        <view class="appointment-item" wx:key="txt" wx:for="{{appointlist}}">
-          <navigator url="{{item.href}}">
+        <view class="appointment-item" wx:key="txt" wx:for="{{appointlist}}" wx:for-index="n">
+          <navigator url="/pages/details/details?index={{n}}">
             <view>
               <span class="point"></span>
               <view class="appointment-date">{{item.time.date}}
