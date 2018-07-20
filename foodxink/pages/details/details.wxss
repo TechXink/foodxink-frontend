@@ -64,6 +64,7 @@ html{
   padding: 15rpx 8%;
   color: #666;
   font-size: 28rpx;
+  display: flex;
 }
 .detailsShare{
   margin-left:65%;
