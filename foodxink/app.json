@@ -1,8 +1,10 @@
 {
   "pages": [
+    
+    "pages/home/home",
+    "pages/editRec/editRec",
     "pages/index/index",
-    "pages/logs/logs",
-    "pages/home/home"
+    "pages/logs/logs"
   ],
   "window": {
     "backgroundTextStyle": "light",

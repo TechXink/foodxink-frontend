@@ -89,7 +89,7 @@
   </view>
 
   <view class="addNew">
-    <navigator url="../logs/logs">
+    <navigator url="/pages/editRec/editRec">
       <view class="iconfont icon-add"></view>
     </navigator>
   </view>
