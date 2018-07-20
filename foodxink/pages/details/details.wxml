@@ -1,0 +1,49 @@
+<!--pages/details/details.wxml-->
+<!-- <text>pages/details/details.wxml</text> -->
+
+<view class="container">
+  <image class='detailsImg' src='{{ appointlist[index].img}}'></image>
+  <view class='detailsTime'>距离组团时间还剩：
+    <view>20</view> : 
+    <view>08</view> : 
+    <view>06</view>
+  </view>
+  <view class='detailsTitle'>{{ appointlist[index].text.title}}</view>
+  <view class='detailsText'>{{ appointlist[index].text.contain}}</view>
+  <view class='endTime'>
+    <i class="icon-history"></i>
+    <text>   2018.08.08 19:30</text>
+  </view>
+  <view class='detailsSite'>
+    <i class="icon-location"></i>
+    <text>   悠乐汇E座</text>
+    <i class="icon-add detailsShare"></i>
+  </view>
+  <view class='keepAppointment'>
+    <view class='touxiang'></view>
+    <view class='name'>
+      <text>Thaos</text>
+      <view>发起者</view>
+    </view>
+    <view class='genyue'>
+      <i class="icon-add"></i>
+      <text>跟约</text>
+    </view>
+  </view>
+
+  <view class='appointPerson'>
+    <view class='touxiang'></view>
+    <view class='name'>
+      <text>Groot<text>跟约！</text></text>
+      <view>1小时前</view>
+    </view>
+  </view>
+
+  <view class='appointPerson'>
+    <view class='touxiang'></view>
+    <view class='name'>
+      <text>Star Load<text>跟约！</text></text>
+      <view>2小时前</view>
+    </view>
+  </view>
+</view>

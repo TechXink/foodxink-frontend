@@ -1,10 +1,11 @@
 {
   "pages": [
-    
+    "pages/index/index",
     "pages/home/home",
     "pages/editRec/editRec",
-    "pages/index/index",
+    "pages/details/details",
     "pages/logs/logs"
+
   ],
   "window": {
     "backgroundTextStyle": "light",
