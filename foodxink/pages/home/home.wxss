@@ -262,3 +262,8 @@
   background: #fff;
   border-radius: 55%;
 }
+
+navigator:focus,navigator:active,navigator:visited,navigator:hover{
+  background: none;
+  opacity: 1
+}
