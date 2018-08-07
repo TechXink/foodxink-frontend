@@ -40,24 +40,34 @@
 }
 
 .images {
-  padding: 10px;
+  display: -webkit-box;
   display: -webkit-flex;
   display: flex;
+  flex-wrap: wrap;
 }
 
 .single {
+  margin: 3rpx;
   width: 100rpx;
   height: 100rpx;
+  border: 3px solid #e5e5e5;
+  align-content: center;
+  align-items: center;
 }
 
 .singleButton {
   text-align: center;
   font-size: 60rpx;
   color: #e5e5e5;
-  margin-left: 10rpx;
+  margin: 3rpx;
   width: 100rpx;
   height: 100rpx;
   border: 3px solid #e5e5e5;
   align-content: center;
   align-items: center;
+}
+
+.addButton {
+  font-size: 32rpx;
+  background: rgba(255, 0, 120, 1)!important;
 }
