@@ -143,7 +143,7 @@ flex-direction:row;
   border-radius: 100%;
   background: rgba(219, 219, 219, 1);
   position: absolute;
-  left: -36rpx;
+  left: -6%;
   top: 10rpx;
 }
 
