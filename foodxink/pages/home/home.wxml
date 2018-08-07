@@ -26,8 +26,7 @@
               </view>
               <view class='item'>
                 <i class="icon-history"></i> 历史约单</view>
-              <view class='item'>
-                <i class="icon-switch"></i>退出</view>
+
             </view>
           </view>
         </view>
