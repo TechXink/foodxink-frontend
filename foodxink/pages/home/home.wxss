@@ -45,17 +45,31 @@
   top: 6rpx;
   color: #fff;
   flex-direction: column;
+
 }
 
 .userinfo-t .info .item {
-  background: #333;
-  border-bottom: 1rpx solid #fff;
-  font-size: 24rpx;
-  padding: 12rpx;
-  text-align: left;
-  display: flex;
-  flex-direction: row;
+background:#333;
+border-bottom:1rpx solid #fff;
+font-size:30rpx;
+padding:24rpx;
+text-align:left;
+display:flex;
+flex-direction:row;
+
+
 }
+
+.userinfo-t .info .item:nth-child(1) {
+  border-radius:14rpx 14rpx 0 0;
+
+}
+
+.userinfo-t .info .item:nth-child(3) {
+  border-radius:14rpx 14rpx 0 0;
+
+}
+
 
 .userinfo-t .info .item i {
   font-size: 45rpx;
@@ -108,7 +122,7 @@
 
 .title {
   font-size: 49rpx;
-  padding-top: 32rpx;
+  padding-top: 12rpx;
   color: #101010;
   position: relative;
 }
@@ -124,12 +138,12 @@
 
 .appointment-list .point {
   display: inline-block;
-  width: 20rpx;
-  height: 20rpx;
+  width: 21rpx;
+  height: 21rpx;
   border-radius: 100%;
   background: rgba(219, 219, 219, 1);
   position: absolute;
-  left: -38rpx;
+  left: -36rpx;
   top: 10rpx;
 }
 
@@ -159,14 +173,29 @@
   overflow:hidden;
 }
 
+.appointment-info .time-wrap .back{
+   background: #000;
+   opacity: 0.3;
+   position:absolute;
+   height: 168rpx;
+   display: block;
+   width:100%;
+   top:0;
+   z-index: 4
+
+}
+
+
 .appointment-info .time-wrap image{
   position: absolute;
-  width: 100%
+  width: 100%;
+   z-index: 3
 }
 
 .appointment-info .time {
   padding: 56rpx 0 0 20rpx;
   position: absolute;
+  z-index: 5
 }
 
 
@@ -188,7 +217,7 @@
 }
 
 .more {
-  padding: 30rpx 0 50rpx 0;
+  padding: 30rpx 0 100rpx 0;
 }
 
 .scroll-header {
@@ -237,7 +266,7 @@
 }
 
 .addrInfo-tips .addrInfo-gps {
-  color: rgba(255, 85, 57, 1);
+  color: #5fb4d5;
 }
 
 .addrInfo-tips .addrInfo-gps i {
@@ -248,22 +277,23 @@
   padding: 8rpx 30rpx;
   border-radius: 20px;
   font-size: 24rpx;
-  color: #fff;
-  background: rgba(255, 0, 120, 1);
+  color: #272624;
+  background:#face0d;
   margin: 32rpx 0 0 45rpx;
 }
 
 .addNew {
   position: fixed;
-  color: rgba(255, 0, 120, 1);
+  color:#face0d;
   bottom: 26rpx;
   right: 18rpx;
-  font-size: 80rpx;
+  font-size: 120rpx;
   background: #fff;
   border-radius: 55%;
+  z-index: 99
 }
 
-navigator:focus,navigator:active,navigator:visited,navigator:hover{
+.appointment-item navigator:focus,.appointment-item navigator:active,.appointment-item navigator:visited,.appointment-item navigator:hover{
   background: none;
   opacity: 1
 }
