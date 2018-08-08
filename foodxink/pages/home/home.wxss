@@ -65,7 +65,7 @@ flex-direction:row;
 
 }
 
-.userinfo-t .info .item:nth-child(3) {
+.userinfo-t .info .item:nth-child(2) {
   border-radius:0 0 14rpx 14rpx ;
 
 }
@@ -258,6 +258,9 @@ flex-direction:row;
 
 .addrInfo-tips .addrInfo-res {
   font-size: 30rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .addrInfo-tips .addrInfo-time {

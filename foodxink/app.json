@@ -4,8 +4,8 @@
     "pages/home/home",
     "pages/editRec/editRec",
     "pages/details/details",
-    "pages/logs/logs"
-
+    "pages/logs/logs",
+    "pages/historyList/historyList"
   ],
   "window": {
     "backgroundTextStyle": "light",

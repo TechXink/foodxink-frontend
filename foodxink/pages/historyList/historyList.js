@@ -11,20 +11,72 @@ Page({
     userInfo: {},
     openUserInfo: false,
     appointlist: [{
+      time: {
+        date: "6月18号",
+        week: "星期一",
+        hour: "19:50"
+      },
+      location: {
+        address: "北京市朝阳区望京园601号",
+        errMsg: "chooseLocation:ok",
+        latitude: 39.98994,
+        longitude: 116.47884,
+        name: "悠乐汇E座"
+      },
+      img: "/img/ceshi.jpg",
+      href: "../logs/logs"
+    },
+    {
+      time: {
+        date: "6月18号",
+        week: "星期一",
+        hour: "19:50"
+      },
+      location: {
+        address: "北京市朝阳区望京园601号",
+        errMsg: "chooseLocation:ok",
+        latitude: 39.98994,
+        longitude: 116.47884,
+        name: "悠乐汇E座"
+      },
+      img: "/img/ceshi2.jpg",
+      href: "../logs/logs"
+    },
+    {
+      time: {
+        date: "6月18号",
+        week: "星期一",
+        hour: "19:50"
+      },
+      location: {
+        address: "北京市朝阳区望京园601号",
+        errMsg: "chooseLocation:ok",
+        latitude: 39.98994,
+        longitude: 116.67884,
+        name: "悠乐汇E座"
+      },
+      img: "/img/ceshi.jpg",
+      href: "../logs/logs"
+    }
+    ],
+    recommendList: [
+      [{
         time: {
           date: "6月18号",
           week: "星期一",
           hour: "19:50"
         },
         location: {
-          address: "北京市朝阳区望京园601号",
+          address: "北京市朝阳区望京街10号",
           errMsg: "chooseLocation:ok",
-          latitude: 39.98994,
-          longitude: 116.47884,
-          name: "悠乐汇E座"
+          latitude: 39.99612,
+          longitude: 116.58085,
+          name: "望京SOHO"
         },
-        img: "/img/ceshi.jpg",
-        href: "../logs/logs"
+        img: "/img/ceshi2.jpg",
+        res: "吃得次数更多",
+        href: "../logs/logs",
+        gps: 0
       },
       {
         time: {
@@ -36,11 +88,32 @@ Page({
           address: "北京市朝阳区望京园601号",
           errMsg: "chooseLocation:ok",
           latitude: 39.98994,
-          longitude: 116.47884,
+          longitude: 116.97884,
+          name: "悠乐汇E座"
+        },
+        img: "/img/ceshi.jpg",
+        res: "吃得次数更多",
+        href: "../logs/logs",
+        gps: 0
+      },
+      ],
+      [{
+        time: {
+          date: "6月18号",
+          week: "星期一",
+          hour: "19:50"
+        },
+        location: {
+          address: "北京市朝阳区望京园601号",
+          errMsg: "chooseLocation:ok",
+          latitude: 39.98994,
+          longitude: 116.87884,
           name: "悠乐汇E座"
         },
         img: "/img/ceshi2.jpg",
-        href: "../logs/logs"
+        res: "吃得次数更多",
+        href: "../logs/logs",
+        gps: 0
       },
       {
         time: {
@@ -56,120 +129,47 @@ Page({
           name: "悠乐汇E座"
         },
         img: "/img/ceshi.jpg",
-        href: "../logs/logs"
-      }
-    ],
-    recommendList: [
-      [{
-          time: {
-            date: "6月18号",
-            week: "星期一",
-            hour: "19:50"
-          },
-          location: {
-            address: "北京市朝阳区望京街10号",
-            errMsg: "chooseLocation:ok",
-            latitude: 39.99612,
-            longitude: 116.58085,
-            name: "望京SOHO"
-          },
-          img: "/img/ceshi2.jpg",
-          res: "吃得次数更多",
-          href: "../logs/logs",
-          gps: 0
-        },
-        {
-          time: {
-            date: "6月18号",
-            week: "星期一",
-            hour: "19:50"
-          },
-          location: {
-            address: "北京市朝阳区望京园601号",
-            errMsg: "chooseLocation:ok",
-            latitude: 39.98994,
-            longitude: 116.97884,
-            name: "悠乐汇E座"
-          },
-          img: "/img/ceshi.jpg",
-          res: "吃得次数更多",
-          href: "../logs/logs",
-          gps: 0
-        },
+        res: "吃得次数更多",
+        href: "../logs/logs",
+        gps: 0
+      },
       ],
       [{
-          time: {
-            date: "6月18号",
-            week: "星期一",
-            hour: "19:50"
-          },
-          location: {
-            address: "北京市朝阳区望京园601号",
-            errMsg: "chooseLocation:ok",
-            latitude: 39.98994,
-            longitude: 116.87884,
-            name: "悠乐汇E座"
-          },
-          img: "/img/ceshi2.jpg",
-          res: "吃得次数更多",
-          href: "../logs/logs",
-          gps: 0
+        time: {
+          date: "6月18号",
+          week: "星期一",
+          hour: "19:50"
         },
-        {
-          time: {
-            date: "6月18号",
-            week: "星期一",
-            hour: "19:50"
-          },
-          location: {
-            address: "北京市朝阳区望京园601号",
-            errMsg: "chooseLocation:ok",
-            latitude: 39.98994,
-            longitude: 116.67884,
-            name: "悠乐汇E座"
-          },
-          img: "/img/ceshi.jpg",
-          res: "吃得次数更多",
-          href: "../logs/logs",
-          gps: 0
+        location: {
+          address: "北京市朝阳区望京园601号",
+          errMsg: "chooseLocation:ok",
+          latitude: 39.98994,
+          longitude: 116.87884,
+          name: "悠乐汇E座"
         },
-      ],
-      [{
-          time: {
-            date: "6月18号",
-            week: "星期一",
-            hour: "19:50"
-          },
-          location: {
-            address: "北京市朝阳区望京园601号",
-            errMsg: "chooseLocation:ok",
-            latitude: 39.98994,
-            longitude: 116.87884,
-            name: "悠乐汇E座"
-          },
-          img: "/img/ceshi2.jpg",
-          res: "吃得次数更多",
-          href: "../logs/logs",
-          gps: 0
+        img: "/img/ceshi2.jpg",
+        res: "吃得次数更多",
+        href: "../logs/logs",
+        gps: 0
+      },
+      {
+        time: {
+          date: "6月18号",
+          week: "星期一",
+          hour: "19:50"
         },
-        {
-          time: {
-            date: "6月18号",
-            week: "星期一",
-            hour: "19:50"
-          },
-          location: {
-            address: "北京市朝阳区望京园601号",
-            errMsg: "chooseLocation:ok",
-            latitude: 39.98994,
-            longitude: 116.67884,
-            name: "悠乐汇E座"
-          },
-          img: "/img/ceshi.jpg",
-          res: "吃得次数更多",
-          href: "../logs/logs",
-          gps: 0
+        location: {
+          address: "北京市朝阳区望京园601号",
+          errMsg: "chooseLocation:ok",
+          latitude: 39.98994,
+          longitude: 116.67884,
+          name: "悠乐汇E座"
         },
+        img: "/img/ceshi.jpg",
+        res: "吃得次数更多",
+        href: "../logs/logs",
+        gps: 0
+      },
       ],
 
 
@@ -177,18 +177,18 @@ Page({
 
   },
   //事件处理函数
-  showUserInfo: function(e) {
+  showUserInfo: function (e) {
     console.log(e)
     if (e.target.id == "avatar") {
       this.setData({
         openUserInfo: !this.data.openUserInfo
       })
-      
+
     } else {
       this.setData({
         openUserInfo: false
       })
-      
+
     }
 
 
@@ -196,7 +196,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function() {
+  onLoad: function () {
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -234,11 +234,11 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
 
     wx.getStorage({
       key: 'api_token',
-      success: function(res) {
+      success: function (res) {
         console.log(res.data)
       }
     });
@@ -260,35 +260,35 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
 
   },
 
@@ -297,10 +297,10 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
 
   },
-  getUserInfo: function(e) {
+  getUserInfo: function (e) {
     console.log(e)
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
@@ -309,13 +309,13 @@ Page({
     })
   },
   //获取当前位置坐标
-  getCenterLocation: function() {
+  getCenterLocation: function () {
 
   },
   //
 
   //获取两个地址之间的距离
-  getDistance: function(lat1, lng1, lat2, lng2) {
+  getDistance: function (lat1, lng1, lat2, lng2) {
 
     lat1 = lat1 || 0;
 

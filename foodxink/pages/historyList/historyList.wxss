@@ -1,0 +1,2 @@
+/* pages/historyList/historyList.wxss */
+@import "../home/home.wxss";

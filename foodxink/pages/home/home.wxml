@@ -3,14 +3,14 @@
 
 
 
-  <view class='list'>
+  <view class='list'  bindtap="showUserInfo" >
     <!-- 约单列表 -->
     <view class="section appointment">
       <view class="title">
         我的约单
         <!-- 用户信息 -->
-        <view class="userinfo-s">
-          <image bindtap="showUserInfo" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+        <view class="userinfo-s" bindtap="showUserInfo">
+          <image id="avatar" catchtap="showUserInfo"  class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
           <view wx:if="{{openUserInfo}}" class="userinfo-t">
             <view class="tips"></view>
             <view class="info">
@@ -25,7 +25,7 @@
                 </view>
               </view>
               <view class='item'>
-                <i class="icon-history"></i> 历史约单</view>
+                <navigator url="../historyList/historyList"><i class="icon-history"></i> 历史约单</navigator></view>
 
             </view>
           </view>
