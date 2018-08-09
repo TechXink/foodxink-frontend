@@ -33,8 +33,9 @@
 
       </view>
       <view class="appointment-list">
-       <view  wx:if="{{appointlist.length == 0}}">
-           啊哦 您还没有约单哦！
+       <view  class="kong" wx:if="{{appointlist.length == 0}}">
+       <view><image src="../../img/kong.png"></image></view>
+           <p>目前还没有约单哟</p>
        </view>
     
         <view  class="appointment-item" wx:key="txt" wx:for="{{appointlist}}" wx:for-index="n">
