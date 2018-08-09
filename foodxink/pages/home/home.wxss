@@ -307,7 +307,8 @@ flex-direction:row;
   z-index: 99
 }
 
-.appointment-item navigator:focus,.appointment-item navigator:active,.appointment-item navigator:visited,.appointment-item navigator:hover{
+.appointment-item navigator:focus,.appointment-item navigator:active,.appointment-item navigator:visited,.appointment-item navigator:hover,.addNew  navigator:focus,.addNew  navigator:active,.addNew navigator:visited,.addNew navigator:hover{
   background: none;
   opacity: 1
 }
+

@@ -7,7 +7,7 @@
     <!-- 约单列表 -->
     <view class="section appointment">
       <view class="title">
-        我的约单
+        历史约单
 
 
       </view>
