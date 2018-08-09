@@ -10,178 +10,32 @@ Page({
   data: {
     userInfo: {},
     openUserInfo: false,
-    appointlist: [{
-        time: {
-          date: "6月18号",
-          week: "星期一",
-          hour: "19:50"
-        },
-        location: {
-          address: "北京市朝阳区望京园601号",
-          errMsg: "chooseLocation:ok",
-          latitude: 39.98994,
-          longitude: 116.47884,
-          name: "悠乐汇E座"
-        },
-        img: "/img/ceshi.jpg",
-        href: "../logs/logs"
-      },
-      {
-        time: {
-          date: "6月18号",
-          week: "星期一",
-          hour: "19:50"
-        },
-        location: {
-          address: "北京市朝阳区望京园601号",
-          errMsg: "chooseLocation:ok",
-          latitude: 39.98994,
-          longitude: 116.47884,
-          name: "悠乐汇E座"
-        },
-        img: "/img/ceshi2.jpg",
-        href: "../logs/logs"
-      },
-      {
-        time: {
-          date: "6月18号",
-          week: "星期一",
-          hour: "19:50"
-        },
-        location: {
-          address: "北京市朝阳区望京园601号",
-          errMsg: "chooseLocation:ok",
-          latitude: 39.98994,
-          longitude: 116.67884,
-          name: "悠乐汇E座"
-        },
-        img: "/img/ceshi.jpg",
-        href: "../logs/logs"
-      }
-    ],
+    token: '',
+    appointlist: [],
     recommendList: [
-      [{
-          time: {
-            date: "6月18号",
-            week: "星期一",
-            hour: "19:50"
-          },
-          location: {
-            address: "北京市朝阳区望京街10号",
-            errMsg: "chooseLocation:ok",
-            latitude: 39.99612,
-            longitude: 116.58085,
-            name: "望京SOHO"
-          },
-          img: "/img/ceshi2.jpg",
-          res: "吃得次数更多",
-          href: "../logs/logs",
-          gps:0
-        },
-        {
-          time: {
-            date: "6月18号",
-            week: "星期一",
-            hour: "19:50"
-          },
-          location: {
-            address: "北京市朝阳区望京园601号",
-            errMsg: "chooseLocation:ok",
-            latitude: 39.98994,
-            longitude: 116.97884,
-            name: "悠乐汇E座"
-          },
-          img: "/img/ceshi.jpg",
-          res: "吃得次数更多",
-          href: "../logs/logs",
-          gps: 0
-        },
-      ],
-      [{
-          time: {
-            date: "6月18号",
-            week: "星期一",
-            hour: "19:50"
-          },
-          location: {
-            address: "北京市朝阳区望京园601号",
-            errMsg: "chooseLocation:ok",
-            latitude: 39.98994,
-            longitude: 116.87884,
-            name: "悠乐汇E座"
-          },
-          img: "/img/ceshi2.jpg",
-          res: "吃得次数更多",
-          href: "../logs/logs",
-          gps: 0
-        },
-        {
-          time: {
-            date: "6月18号",
-            week: "星期一",
-            hour: "19:50"
-          },
-          location: {
-            address: "北京市朝阳区望京园601号",
-            errMsg: "chooseLocation:ok",
-            latitude: 39.98994,
-            longitude: 116.67884,
-            name: "悠乐汇E座"
-          },
-          img: "/img/ceshi.jpg",
-          res: "吃得次数更多",
-          href: "../logs/logs",
-          gps: 0
-        },
-      ],
-      [{
-        time: {
-          date: "6月18号",
-          week: "星期一",
-          hour: "19:50"
-        },
-        location: {
-          address: "北京市朝阳区望京园601号",
-          errMsg: "chooseLocation:ok",
-          latitude: 39.98994,
-          longitude: 116.87884,
-          name: "悠乐汇E座"
-        },
-        img: "/img/ceshi2.jpg",
-        res: "吃得次数更多",
-        href: "../logs/logs",
-        gps: 0
-      },
-      {
-        time: {
-          date: "6月18号",
-          week: "星期一",
-          hour: "19:50"
-        },
-        location: {
-          address: "北京市朝阳区望京园601号",
-          errMsg: "chooseLocation:ok",
-          latitude: 39.98994,
-          longitude: 116.67884,
-          name: "悠乐汇E座"
-        },
-        img: "/img/ceshi.jpg",
-        res: "吃得次数更多",
-        href: "../logs/logs",
-        gps: 0
-      },
-      ],
+    [
+
+    ]
 
 
     ]
 
   },
   //事件处理函数
-  showUserInfo: function() {
-    console.log(this.data.openUserInfo)
-    this.setData({
-      openUserInfo: !this.data.openUserInfo
-    })
+  showUserInfo: function(e) {
+    //console.log(e)
+    if (e.target.id == "avatar") {
+      this.setData({
+        openUserInfo: !this.data.openUserInfo
+      })
+
+    } else {
+      this.setData({
+        openUserInfo: false
+      })
+
+    }
+
 
   },
   /**
@@ -204,16 +58,67 @@ Page({
       }
     } else {
       // 在没有 open-type=getUserInfo 版本的兼容处理
-      wx.getUserInfo({
-        success: res => {
-          app.globalData.userInfo = res.userInfo
-          this.setData({
-            userInfo: res.userInfo,
-            hasUserInfo: true
-          })
-        }
-      })
+
     }
+    let _this = this;
+    wx.getStorage({
+      key: 'api_token',
+      success: function(res) {
+        console.log(res.data)
+        _this.setData({
+          token: res.data
+        })
+
+        let _url = 'http://117.50.43.67/api/v1/yuedans?api_token={' + res.data + '}'
+        wx.request({
+          url: _url,
+          data: {
+            api_token: res.data
+          },
+          header: {
+            'content-type': 'application/json' // 默认值
+          },
+          success: function(res) {
+
+
+
+            _this.setData({
+
+              appointlist: res.data.data
+            })
+
+
+            console.log(res.data);
+
+          }
+        });
+
+        let _urlMore = 'http://117.50.43.67/api/v1/yuedan/more?api_token={' + res.data + '}'
+        wx.request({
+          url: _urlMore,
+          data: {
+            api_token: res.data
+          },
+          header: {
+            'content-type': 'application/json' // 默认值
+          },
+          success: function(res) {
+
+            _this.getMore(res.data.data);
+            console.log(res.data);
+
+          }
+        });
+
+
+      }
+    });
+
+
+
+   
+
+
 
 
 
@@ -227,16 +132,19 @@ Page({
    */
   onReady: function() {
 
-  //初始计算两点之间距离
-    for (var val of this.data.recommendList) {
-      for (var i of val) {
-        i.gps = this.getDistance(39.98994, 116.47884, i.location.latitude, i.location.longitude);
-      }
-    }
 
-    var b = this.data.recommendList;
-    this.setData({
-      recommendList: b
+
+    //初始计算两点之间距离
+
+
+    wx.getUserInfo({
+      success: res => {
+        app.globalData.userInfo = res.userInfo
+        this.setData({
+          userInfo: res.userInfo,
+          hasUserInfo: true
+        })
+      }
     })
 
   },
@@ -296,7 +204,52 @@ Page({
   getCenterLocation: function() {
 
   },
+  getMore(arr) {
+
+
+   
+    let y = [];
+    let b = [];
+    for (let a = 0; a < arr.length; a++) {
+
+      arr[a].gps = this.getDistance(39.98994, 116.47884, arr[a].latitude, arr[a].longitude);
+      arr[a].time = this.getTime(arr[a].eat_time);
+      
+      console.log(this.getTime(arr[a].eat_time))
+      if (b.length < 2) {
+        b.push(arr[a])
+      } else {
+        y.push(b);
+        b = []
+        b.push(arr[a])
+      }
+
+      if (a == (arr.length - 1)) {
+        y.push(b);
+      }
+      console.log(b)
+    }
+
+    this.setData({
+      recommendList: y
+    })
+
+  },
   //
+
+  getTime:function (timestamp) {
+    var time = {};
+    var date = new Date(timestamp * 1000);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
+    let Y = date.getFullYear() + '-';
+    let M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) ;
+    let D = date.getDate() ;
+    let h = date.getHours() + ':';
+    let m = date.getMinutes() ;
+    let s = date.getSeconds();
+    time.date = M+'月'+D+'日'
+    time.hour = h+m
+    return time
+  },
 
   //获取两个地址之间的距离
   getDistance: function(lat1, lng1, lat2, lng2) {

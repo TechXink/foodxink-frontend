@@ -1,0 +1,47 @@
+<!--pages/historyList/historyList.wxml-->
+<view class="container">
+
+
+
+  <view class='list'  bindtap="showUserInfo" >
+    <!-- 约单列表 -->
+    <view class="section appointment">
+      <view class="title">
+        历史约单
+
+
+      </view>
+      <view class="appointment-list">
+       <view  class="kong" wx:if="{{appointlist.length == 0}}">
+       <view><image src="../../img/kong.png"></image></view>
+           <p>目前还没有约单哟</p>
+       </view>
+        <view class="appointment-item" wx:key="txt" wx:for="{{appointlist}}" wx:for-index="n">
+          <navigator url="/pages/details/details?index={{n}}">
+            <view>
+              <span class="point"></span>
+              <view class="appointment-date">{{item.time.date}}
+                <span>{{item.time.week}}</span>
+              </view>
+              <view class="appointment-info">
+                <view class="time-wrap">
+                  <span class="back"></span>
+                  <image src="{{item.img}}"></image>
+                  <view class="time">时间
+                    <span>{{item.time.hour}}</span>
+                  </view>
+                </view>
+                <view class="addr">
+                  <p>地点:
+                    <span>{{item.location.address}}</span>
+                  </p>
+                </view>
+              </view>
+
+            </view>
+          </navigator>
+        </view>
+      </view>
+    </view>
+    </view>
+    </view>

@@ -3,14 +3,14 @@
 
 
 
-  <view class='list'>
+  <view class='list'  bindtap="showUserInfo" >
     <!-- 约单列表 -->
     <view class="section appointment">
       <view class="title">
         我的约单
         <!-- 用户信息 -->
-        <view class="userinfo-s">
-          <image bindtap="showUserInfo" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+        <view class="userinfo-s" bindtap="showUserInfo">
+          <image id="avatar" catchtap="showUserInfo"  class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
           <view wx:if="{{openUserInfo}}" class="userinfo-t">
             <view class="tips"></view>
             <view class="info">
@@ -25,7 +25,7 @@
                 </view>
               </view>
               <view class='item'>
-                <i class="icon-history"></i> 历史约单</view>
+                <navigator url="../historyList/historyList"><i class="icon-history"></i> 历史约单</navigator></view>
 
             </view>
           </view>
@@ -33,8 +33,13 @@
 
       </view>
       <view class="appointment-list">
-        <view class="appointment-item" wx:key="txt" wx:for="{{appointlist}}" wx:for-index="n">
-          <navigator url="/pages/details/details?index={{n}}">
+       <view  class="kong" wx:if="{{appointlist.length == 0}}">
+       <view><image src="../../img/kong.png"></image></view>
+           <p>目前还没有约单哟</p>
+       </view>
+    
+        <view  class="appointment-item" wx:key="txt" wx:for="{{appointlist}}" wx:for-index="n">
+          <navigator url="/pages/details/details?index={{item.yuedan_id}}">
             <view>
               <span class="point"></span>
               <view class="appointment-date">{{item.time.date}}
@@ -69,16 +74,16 @@
         <view wx:key="unique" class="scroll-view-item" wx:for="{{recommendList}}" wx:for-index="i">
           <view wx:key="shop" wx:for="{{recommendList[i]}}" class='addrInfo-item' style="flex-direction:row;">
             <view class="addrInfo-img">
-              <image src="{{item.img}}"></image>
+              <image src="{{item.image}}"></image>
             </view>
             <view class="addrInfo-tips">
-              <view class="addrInfo-res">{{item.res}}</view>
+              <view class="addrInfo-res">{{item.title}}</view>
               <view class='addrInfo-time'>{{item.time.date}} {{item.time.hour}}</view>
               <view class='addrInfo-gps'>
                 <i class=".icon-location"></i> 距离悠乐汇{{item.gps}}m</view>
             </view>
             <view class="addrInfo-btn">
-              <navigator url="{{item.href}}">查看</navigator>
+              <navigator url="/pages/details/details?index={{item.id}}">查看</navigator>
             </view>
           </view>
         </view>
