@@ -5,7 +5,7 @@ Page({
   data: {
     api_token: '',
     title: '',
-    description: '请描述项目...',
+    description: '',
     date: '请选择...',
     fanTime: '00:00',
     flagTime: '00:00',
@@ -15,34 +15,39 @@ Page({
     location: {
       address: "",
       errMsg: "chooseLocation:ok",
-      latitude: 39.98994,
-      longitude: 116.47884,
+      latitude: 0,
+      longitude: 0,
       name: "请选择..."
     },
-    image1: '',
     images: [],
-    imagesUrl: []
+    imagesUrl: [],
+
+    hideMessage: true,
+    message: "请确保全部内容已经填写，并保持网络畅通"
   },
 
   // 输入标题，更新本地数据
   bindTitleChange: function (e) {
     this.setData({
-      title: e.detail.value
-    })
+      title: e.detail.value,
+      hideMessage: true
+    });
   },
 
   // 输入描述文字，更新本地数据
   bindDescriptionChange: function (e) {
     this.setData({
-      description: e.detail.value
-    })
+      description: e.detail.value,
+      hideMessage: true
+    });
   },
 
   // 选择日期，更新本地数据
   bindDateChange: function (e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
-      date: e.detail.value
+      date: e.detail.value,
+      hideMessage: true
     })
   },
 
@@ -50,7 +55,8 @@ Page({
   bindFanTimeChange: function (e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
-      fanTime: e.detail.value
+      fanTime: e.detail.value,
+      hideMessage: true
     });
     let closeDateTime = new Date(this.data.date + ' ' + this.data.fanTime);
     let closeDateTimeInt = Math.round(Date.parse(closeDateTime) / 1000);
@@ -63,7 +69,8 @@ Page({
   bindFlagTimeChange: function (e) {
     console.log('picker发送选择改变，携带值为', e.detail.value);
     this.setData({
-      flagTime: e.detail.value
+      flagTime: e.detail.value,
+      hideMessage: true
     });
     let eatDateTime = new Date(this.data.date + ' ' + this.data.flagTime);
     let eatDateTimeInt = Math.round(Date.parse(eatDateTime) / 1000);
@@ -95,7 +102,8 @@ Page({
                 longitude: res.longitude,
                 latitude: res.latitude,
                 address: res.address
-              }
+              },
+              hideMessage: true
             })
           },
           //失败打印信息
@@ -127,7 +135,8 @@ Page({
         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
         var tempFilePaths = that.data.images.concat(res.tempFilePaths);
         that.setData({
-          images: tempFilePaths
+          images: tempFilePaths,
+          hideMessage: true
         });
         // 上传图片
         wx.uploadFile({
@@ -181,18 +190,17 @@ Page({
           },
           method: "POST",
           data: thatData,
-          /*data: {
-            title: "title",
-            description: "Test",
-            close_time: 123456,
-            eat_time: 234567,
-            address: "Beijing",
-            latitude: 12,
-            longitude: 32,
-            location_name: "lname",
-            image: "[]"
-          },*/
           success: function (res) {
+            if (res.data.code == 0) {
+              wx.redirectTo({
+                url: '/pages/home/home'
+              })
+            }
+            else {
+              that.setData({
+                hideMessage: false
+              });
+            }
             console.log(res.data);
           }
         });

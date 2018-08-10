@@ -6,12 +6,12 @@
       
       <view class="inputField">
         <label class="label">标题</label>
-        <input class="field" type="text" value="{{title}}" bindchange="bindTitleChange"/>
+        <input class="field" type="text" value="{{title}}" bindchange="bindTitleChange" placeholder='请输入标题...'/>
       </view>
 
       <view class="inputField">
         <label class="label">描述</label>
-        <textarea class="field" value="{{description}}" style="height: 5em" bindblur="bindDescriptionChange"/>
+        <textarea class="field" value="{{description}}" style="height: 5em" bindblur="bindDescriptionChange" placeholder='请输入描述...'/>
       </view>
 
       <view class="inputField">
@@ -56,6 +56,10 @@
         </view>
       </view>
     </form>
+  </view>
+
+  <view class='message' hidden='{{hideMessage}}'>
+    {{message}}
   </view>
 
   <view class="paddingUp">
