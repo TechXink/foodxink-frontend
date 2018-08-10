@@ -69,7 +69,7 @@ Page({
           token: res.data
         })
 
-        let _url = 'http://117.50.43.67/api/v1/yuedans?api_token={' + res.data + '}'
+        let _url = 'http://117.50.43.67/api/v1/yuedans?api_token=' + res.data + ''
         wx.request({
           url: _url,
           data: {
@@ -93,7 +93,7 @@ Page({
           }
         });
 
-        let _urlMore = 'http://117.50.43.67/api/v1/yuedan/more?api_token={' + res.data + '}'
+        let _urlMore = 'http://117.50.43.67/api/v1/yuedan/more?api_token=' + res.data + ''
         wx.request({
           url: _urlMore,
           data: {
