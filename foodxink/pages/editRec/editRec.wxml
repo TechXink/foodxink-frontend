@@ -5,13 +5,13 @@
     <form bindsubmit='newrec'>
       
       <view class="inputField">
-        <label class="label" for="title">标题</label>
-        <input class="field" type="text" value="{{title}}" />
+        <label class="label">标题</label>
+        <input class="field" type="text" value="{{title}}" bindchange="bindTitleChange"/>
       </view>
 
       <view class="inputField">
-        <label class="label" for="disc">描述</label>
-        <textarea class="field" value="{{disc}}" style="height: 5em" />
+        <label class="label">描述</label>
+        <textarea class="field" value="{{description}}" style="height: 5em" bindblur="bindDescriptionChange"/>
       </view>
 
       <view class="inputField">
@@ -55,13 +55,10 @@
             <view class="singleButton" bindtap='selectImage'>+</view>
         </view>
       </view>
-
-      
-
     </form>
   </view>
 
   <view class="paddingUp">
-    <button class="addButton" type="primary" bindtap="setDisabled" bindtap="deploy">发布</button>
+    <button class="addButton" type="primary" bindtap="postThis">发布</button>
   </view>
 </view>

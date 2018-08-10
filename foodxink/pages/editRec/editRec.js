@@ -1,16 +1,16 @@
 // pages/editRec/editRec.js
 Page({
 
-  /**
-   * 页面的初始数据
-   */
+  /*页面的初始数据*/
   data: {
+    api_token: '',
     title: '',
-    disc: '',
+    description: '请描述项目...',
     date: '请选择...',
-    createTime: Date(),
-    fanTime: '12:00',
-    flagTime: '11:45',
+    fanTime: '00:00',
+    flagTime: '00:00',
+    close_time: 0,
+    eat_time: 0,
     hasLocation: false,
     location: {
       address: "",
@@ -20,11 +20,25 @@ Page({
       name: "请选择..."
     },
     image1: '',
-    images: [
-    ]
+    images: [],
+    imagesUrl: []
   },
 
-  // 选择日期
+  // 输入标题，更新本地数据
+  bindTitleChange: function (e) {
+    this.setData({
+      title: e.detail.value
+    })
+  },
+
+  // 输入描述文字，更新本地数据
+  bindDescriptionChange: function (e) {
+    this.setData({
+      description: e.detail.value
+    })
+  },
+
+  // 选择日期，更新本地数据
   bindDateChange: function (e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
@@ -32,23 +46,33 @@ Page({
     })
   },
 
-  // 选择开饭时间
+  // 选择开饭时间，更新本地数据
   bindFanTimeChange: function (e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
       fanTime: e.detail.value
-    })
+    });
+    let closeDateTime = new Date(this.data.date + ' ' + this.data.fanTime);
+    let closeDateTimeInt = Math.round(Date.parse(closeDateTime) / 1000);
+    this.setData({
+      close_time: closeDateTimeInt
+    });
   },
 
-  // 选择集合时间
+  // 选择集合时间，更新本地数据
   bindFlagTimeChange: function (e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
+    console.log('picker发送选择改变，携带值为', e.detail.value);
     this.setData({
       flagTime: e.detail.value
-    })
+    });
+    let eatDateTime = new Date(this.data.date + ' ' + this.data.flagTime);
+    let eatDateTimeInt = Math.round(Date.parse(eatDateTime) / 1000);
+    this.setData({
+      eat_time: eatDateTimeInt
+    });
   },
 
-  //打开地图选择位置
+  //打开地图选择位置，更新本地数据
   chooseLocation: function () {
     var that = this;
     wx.getLocation({
@@ -96,7 +120,7 @@ Page({
   selectImage: function () {
     var that = this;
     wx.chooseImage({
-      count: 9, // 默认9
+      count: 1, // 默认9
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
       success: function (res) {
@@ -105,8 +129,76 @@ Page({
         that.setData({
           images: tempFilePaths
         });
+        // 上传图片
+        wx.uploadFile({
+          url: 'http://117.50.43.67/api/v1/yuedan/uploadimg?api_token=' + that.data.api_token, //接口
+          filePath: tempFilePaths[0],
+          name: 'upload-img',
+          formData: {
+          },
+          success: function (res) {
+            console.log(res.data);
+            let resData = JSON.parse(res.data)
+            console.log(resData.imgUrl);
+            // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+            var uploadedImages = that.data.imagesUrl.concat(resData.imgUrl);
+            that.setData({
+              imagesUrl: uploadedImages
+            });
+            //do something
+            console.log(that.data);
+          },
+          fail: function (error) {
+            console.log(error);
+          }
+        })
+        //console.log(res);
       }
     })
+  },
+
+  postThis: function () {
+    var that = this;
+    wx.getStorage({
+      key: 'api_token',
+      success: function (res) {
+        let _url = 'http://117.50.43.67/api/v1/yuedan?api_token=' + res.data;
+        var thatData = {
+          title: that.data.title,
+          description: that.data.description,
+          close_time: that.data.close_time,
+          eat_time: that.data.eat_time,
+          address: that.data.location.address,
+          latitude: that.data.location.latitude,
+          longitude: that.data.location.longitude,
+          location_name: that.data.location.name,
+          image: that.data.imagesUrl
+        };
+        wx.request({
+          url: _url,
+          header: {
+            "content-type": "application/json"
+          },
+          method: "POST",
+          data: thatData,
+          /*data: {
+            title: "title",
+            description: "Test",
+            close_time: 123456,
+            eat_time: 234567,
+            address: "Beijing",
+            latitude: 12,
+            longitude: 32,
+            location_name: "lname",
+            image: "[]"
+          },*/
+          success: function (res) {
+            console.log(res.data);
+          }
+        });
+      }
+    });
+
   },
 
   /**
@@ -120,7 +212,26 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+    var thaty = this;
+
+    let date = new Date();
+    let year = date.getFullYear()
+    let month = date.getMonth() + 1
+    let day = date.getDate();
+    let dateString = year + '-' + month + '-' + day;
+
+    thaty.setData({
+      date: dateString,
+    });
+
+    wx.getStorage({
+      key: 'api_token',
+      success: function (res) {
+        thaty.setData({
+          api_token: res.data,
+        });
+      }
+    });
   },
 
   /**
