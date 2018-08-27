@@ -4,8 +4,11 @@
 html{
   margin: 0;
   padding: 0;
+  background: #f0f0f0;
 }
-
+body{
+  background: #f0f0f0;
+}
 .container{
   background: #f0f0f0;
   width: 100%;
@@ -25,7 +28,7 @@ html{
   display: flex;
 }
 .detailsTime >view{
-  width: 40rpx;
+  padding: 0 5rpx;
   height: 40rpx;
   background: #fff;
   color: #f5755a;
@@ -64,6 +67,10 @@ html{
   color: #666;
   font-size: 28rpx;
   display: flex;
+  flex-direction: row;
+}
+.detailsSite>text{
+   white-space:nowrap;
 }
 .detailsShare{
   margin-left:65%;
@@ -72,17 +79,17 @@ html{
 .keepAppointment{
   display: flex;
   margin-top: 2rpx;
-  padding:35rpx 50rpx;
+  padding:35rpx 30rpx;
   background: #fff;
 }
 .keepAppointment>.touxiang{
   width: 100rpx;
   height: 100rpx;
   border-radius: 50rpx;
-  background: #a68064;
+  /* background: #a68064; */
 }
 .keepAppointment>.name{
-  margin-left: 60rpx;
+  margin-left: 40rpx;
   font-size: 35rpx;
   text-align: center;
 }
@@ -111,17 +118,19 @@ html{
   line-height: 80rpx;
 }
 .keepAppointment>.genyue text{
-  margin-left: 20rpx;
+  margin-left: 15rpx;
+  font-size: 34rpx
 }
+
 .appointPerson{
-  padding: 60rpx 60rpx 20rpx 60rpx;
+  padding: 60rpx 60rpx 40rpx 60rpx;
   display: flex;
 }
 .appointPerson>.touxiang{
   width: 90rpx;
   height: 90rpx;
   border-radius: 45rpx;
-  background: #ebc79e;
+  /* background: #ebc79e; */
 }
 .appointPerson>.name{
   margin-left: 40rpx;
@@ -140,4 +149,5 @@ html{
 .appointPerson>.name view{
   font-size: 30rpx;
   color: #999;
+  margin-top: 5rpx;
 }

@@ -14,6 +14,11 @@
   flex-direction: column;
   align-items: center;
 }
+.userinfo  button{
+  background: #ffcc00;
+  color: #fff;
+  box-shadow: 10rpx 10rpx 5rpx #999
+}
 
 .userinfo-avatar {
   width: 128rpx;
@@ -28,4 +33,10 @@
 
 .usermotto {
   margin-top: 200px;
+}
+.backimg{
+  width: 100%;
+  height: 800rpx;
+  position: fixed;
+  bottom: 0
 }

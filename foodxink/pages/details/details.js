@@ -7,76 +7,72 @@ Page({
    * 页面的初始数据
    */
   data: {
-    appointlist: [{
-      time: {
-        date: "6月18号",
-        week: "星期一",
-        hour: "19:50"
-      },
-      location: {
-        address: "北京市朝阳区望京园601号",
-        errMsg: "chooseLocation:ok",
-        latitude: 39.98994,
-        longitude: 116.47884,
-        name: "悠乐汇E座"
-      },
-      img: "/img/ceshi.jpg",
-      href: "../logs/logs",
-      text:{
-        title:"1111111111111111111111",
-        contain:"多了一些 wx:if 这样的属性以及 {{ }} 这样的表达式 在网页的一般开发流程中，我们通常会通过 JS 操作 DOM (对应 HTML 的描述产生的树)，以引起界面的一些变化响应用户的行为。例如，用户点击某个按钮的时候，JS 会记录一些状态到 JS 变量里边，同时通过 DOM API 操控 DOM 的属性或者行为，进而引起界面一些变化。当项目越来越大的时候，你的代码会充斥着非常多的界面交互逻辑和程序的各种状态变量，显然这不是一个很好的开发模式，因此就有了 MVVM 的开发模式(例如 React, Vue)，提倡把渲染和逻辑分离。简单来说就是不要再让 JS 直接操控 DOM，JS只需要管理状态即可，然后再通过一种模板语法来描述状态和界面结构的关系即可。 小程序的框架也是用到了这个思路，如果你需要把一个 Hello World 的字符串显示在界面上"
-      }
-    },
-    {
-      time: {
-        date: "6月18号",
-        week: "星期一",
-        hour: "19:50"
-      },
-      location: {
-        address: "北京市朝阳区望京园601号",
-        errMsg: "chooseLocation:ok",
-        latitude: 39.98994,
-        longitude: 116.47884,
-        name: "悠乐汇E座"
-      },
-      img: "/img/ceshi2.jpg",
-      href: "../logs/logs",
-      text: {
-        title: "22222222222222222222222",
-        contain: "多了一些 wx:if 这样的属性以及 {{ }} 这样的表达式 在网页的一般开发流程中，我们通常会通过 JS 操作 DOM (对应 HTML 的描述产生的树)，以引起界面的一些变化响应用户的行为。例如，用户点击某个按钮的时候，JS 会记录一些状态到 JS 变量里边，同时通过 DOM API 操控 DOM 的属性或者行为，进而引起界面一些变化。当项目越来越大的时候，你的代码会充斥着非常多的界面交互逻辑和程序的各种状态变量，显然这不是一个很好的开发模式，因此就有了 MVVM 的开发模式(例如 React, Vue)，提倡把渲染和逻辑分离。简单来说就是不要再让 JS 直接操控 DOM，JS只需要管理状态即可，然后再通过一种模板语法来描述状态和界面结构的关系即可。 小程序的框架也是用到了这个思路，如果你需要把一个 Hello World 的字符串显示在界面上"
-      }
-    },
-    {
-      time: {
-        date: "6月18号",
-        week: "星期一",
-        hour: "19:50"
-      },
-      location: {
-        address: "北京市朝阳区望京园601号",
-        errMsg: "chooseLocation:ok",
-        latitude: 39.98994,
-        longitude: 116.67884,
-        name: "悠乐汇E座"
-      },
-      img: "/img/ceshi.jpg",
-      href: "../logs/logs",
-      text: {
-        title: "333333333333333333333",
-        contain: "多了一些 wx:if 这样的属性以及 {{ }} 这样的表达式 在网页的一般开发流程中，我们通常会通过 JS 操作 DOM (对应 HTML 的描述产生的树)，以引起界面的一些变化响应用户的行为。例如，用户点击某个按钮的时候，JS 会记录一些状态到 JS 变量里边，同时通过 DOM API 操控 DOM 的属性或者行为，进而引起界面一些变化。当项目越来越大的时候，你的代码会充斥着非常多的界面交互逻辑和程序的各种状态变量，显然这不是一个很好的开发模式，因此就有了 MVVM 的开发模式(例如 React, Vue)，提倡把渲染和逻辑分离。简单来说就是不要再让 JS 直接操控 DOM，JS只需要管理状态即可，然后再通过一种模板语法来描述状态和界面结构的关系即可。 小程序的框架也是用到了这个思路，如果你需要把一个 Hello World 的字符串显示在界面上"
-      }
-    }
-    ],
+    token:'',
+    appointlist: [],
+    participator:[],
+    genyue:[],
+    yuedan_id:'',
+    thisTime:'',
+    ifTimeOver:''
   },
-
+  
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      index:options.index
-    })
+    let _this = this;
+    console.log(options.index)
+    wx.getStorage({
+      key: 'api_token',
+      success: function (res) {
+        console.log(res.data)
+        _this.setData({
+          token: res.data
+        })
+
+        let _url = 'https://foodninja.cloudxink.com/api/v1/yuedan/'+options.index+'?api_token='+res.data
+        wx.request({
+          url: _url,
+          data: {
+            api_token:res.data,
+            yuedan_id: options.index
+          },
+          header: {
+            'content-type': 'application/json' // 默认值
+          },
+          success: function (res) {
+            _this.setData({
+              appointlist: res.data.data,
+            })
+            
+            _this.getCountDown(res.data.data.close_time)
+              
+            
+            console.log(res.data);
+          }
+        });
+
+        let partUrl = 'https://foodninja.cloudxink.com/api/v1/participator/'+ options.index +'?api_token=' + res.data
+        wx.request({
+          url: partUrl,
+          data: {
+            api_token: res.data,
+            yuedan_id: options.index
+          },
+          header: {
+            'content-type': 'application/json' // 默认值
+          },
+          success: function (res) {
+            _this.setData({
+              participator: res.data,
+              genyue: res.data.genyue,
+              yuedan_id:res.data.sponsor[0].yuedan_id
+            })
+            console.log('participator========', res.data);
+          }
+        });
+      }
+    });
   },
 
   /**
@@ -90,7 +86,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+
   },
 
   /**
@@ -126,5 +122,145 @@ Page({
    */
   onShareAppMessage: function () {
   
+  },
+  GetRequest: function () {
+    var url = location.search; //获取url中"?"符后的字串   
+    var theRequest = new Object();
+    if (url.indexOf("?") != -1) {
+      var str = url.substr(1);
+      var strs = str.split("&");
+      for (var i = 0; i < strs.length; i++) {
+        theRequest[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
+      }
+    }
+    return theRequest;
+  },
+  genYue: function () {
+    var _this = this;
+    // console.log(e.target)
+    let _url = 'https://foodninja.cloudxink.com/api/v1/participator?api_token=' + this.data.token
+    console.log(_url)
+    wx.request({
+      url: _url,
+      data: {
+        "yuedan_id": _this.data.yuedan_id
+      },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      method: "POST",
+      
+      success: function (res) {
+        console.log('genyue:::::',res.data)
+        _this.setData({
+          participator: res.data
+        })
+        if(res.data.status == 1){
+          wx.showToast({
+            title: res.data.message,
+
+            duration: 2000
+          })
+        }
+        if(res.data.genyue){
+          _this.setData({
+            genyue:res.data.genyue
+          })
+          
+          _this.onLoad()
+        }
+        
+        
+        
+      }
+
+    });
+    
+  },
+
+  qxGenYue: function () {
+    var _this = this;
+    // console.log(e.target)
+    let _url = 'https://foodninja.cloudxink.com/api/v1/participator/'+ this.data.yuedan_id +'?api_token=' + this.data.token
+    console.log(_url)
+    wx.request({
+      url: _url,
+      data: {
+        "yuedan_id": _this.data.yuedan_id
+      },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      method: "DELETE",
+
+      success: function (res) {
+        console.log('genyue:::::', res.data)
+        _this.setData({
+          participator: res.data
+        })
+        if (res.data.status == 1) {
+          wx.showToast({
+            title: res.data.message,
+
+            duration: 2000
+          })
+        }
+        if (res.data.genyue) {
+          _this.setData({
+            genyue: res.data.genyue
+          })
+          _this.onLoad()
+        }
+
+
+
+      }
+    });
+    
+  },
+  getCountDown:function(timestamp){
+    var _this = this
+    setInterval(function() {
+      var nowTime = new Date();
+      var endTime = new Date(timestamp * 1000);
+      
+      var t = endTime.getTime() - nowTime.getTime();
+      // console.log(t)
+      if(t<=0){
+        _this.setData({
+          ifTimeOver:1
+        })
+        console.log(t)
+      }
+      //            var d=Math.floor(t/1000/60/60/24);
+      var hour = Math.floor(t/1000/60/60);
+      var min = Math.floor(t/1000/60%60);
+      var sec = Math.floor(t/1000%60);
+
+      if (hour < 10) {
+        hour = "0" + hour;
+      }
+      if (min < 10) {
+        min = "0" + min;
+      }
+      if (sec < 10) {
+        sec = "0" + sec;
+      }
+      var countDownTime = hour + ":" + min + ":" + sec;
+      // console.log({
+      //   "hour": hour,
+      //   "min": min,
+      //   "sec": sec
+      // })
+      _this.setData({
+        thisTime: {
+        "hour": hour,
+        "min": min,
+        "sec": sec
+      }
+
+      })
+    }, 1000);
   }
+
 })
