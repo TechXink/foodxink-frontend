@@ -26,7 +26,7 @@ App({
               res.js_code = js_code
               // 把login得到的code和getUserInfo得到的数据合并一起发给第三方服务器，取得token
               wx.request({
-                url: 'http://117.50.43.67/api/auth/oauth',
+                url: 'https://foodninja.cloudxink.com/api/auth/oauth',
                 method: 'POST',
                 data: {data:res},
                 success: function (res) {

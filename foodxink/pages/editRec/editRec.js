@@ -140,7 +140,7 @@ Page({
         });
         // 上传图片
         wx.uploadFile({
-          url: 'http://117.50.43.67/api/v1/yuedan/uploadimg?api_token=' + that.data.api_token, //接口
+          url: 'https://foodninja.cloudxink.com/api/v1/yuedan/uploadimg?api_token=' + that.data.api_token, //接口
           filePath: tempFilePaths[0],
           name: 'upload-img',
           formData: {
@@ -171,7 +171,7 @@ Page({
     wx.getStorage({
       key: 'api_token',
       success: function (res) {
-        let _url = 'http://117.50.43.67/api/v1/yuedan?api_token=' + res.data;
+        let _url = 'https://foodninja.cloudxink.com/api/v1/yuedan?api_token=' + res.data;
         var thatData = {
           title: that.data.title,
           description: that.data.description,
