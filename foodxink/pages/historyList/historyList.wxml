@@ -26,7 +26,7 @@
               <view class="appointment-info">
                 <view class="time-wrap">
                   <span class="back"></span>
-                  <image src="{{item.img}}"></image>
+                  <image src="https://foodninja.cloudxink.com{{item.img}}"></image>
                   <view class="time">时间
                     <span>{{item.time.hour}}</span>
                   </view>
