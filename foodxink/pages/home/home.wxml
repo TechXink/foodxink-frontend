@@ -48,7 +48,7 @@
               <view class="appointment-info">
                 <view class="time-wrap">
                   <span class="back"></span>
-                  <image src="http://117.50.43.67{{item.img}}"></image>
+                  <image src="https://foodninja.cloudxink.com{{item.img}}"></image>
                   <view class="time">时间
                     <span>{{item.time.hour}}</span>
                   </view>
@@ -74,7 +74,7 @@
         <view wx:key="unique" class="scroll-view-item" wx:for="{{recommendList}}" wx:for-index="i">
           <view wx:key="shop" wx:for="{{recommendList[i]}}" class='addrInfo-item' style="flex-direction:row;">
             <view class="addrInfo-img">
-              <image src="http://117.50.43.67{{item.image}}"></image>
+              <image src="https://foodninja.cloudxink.com{{item.image}}"></image>
             </view>
             <view class="addrInfo-tips">
               <view class="addrInfo-res">{{item.title}}</view>
