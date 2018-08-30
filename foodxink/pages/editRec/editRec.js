@@ -9,8 +9,8 @@ Page({
     date: '请选择...',
     fanTime: '00:00',
     flagTime: '00:00',
-    close_time: 0,
-    eat_time: 0,
+    close_time: Math.round(Date.parse(new Date()) / 1000),
+    eat_time: Math.round(Date.parse(new Date()) / 1000),
     hasLocation: false,
     location: {
       address: "",
@@ -202,6 +202,7 @@ Page({
               });
             }
             console.log(res.data);
+            console.log(thatData);
           }
         });
       }
