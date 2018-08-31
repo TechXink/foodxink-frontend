@@ -43,7 +43,7 @@ body{
   font-weight: 600;
   font-size: 40rpx;
   display: block;
-  
+  margin-top: -5rpx;
   color: #000;
   background: #fff;
 }

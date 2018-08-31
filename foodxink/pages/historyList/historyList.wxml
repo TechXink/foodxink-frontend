@@ -17,7 +17,7 @@
            <p>目前还没有约单哟</p>
        </view>
         <view class="appointment-item" wx:key="txt" wx:for="{{appointlist}}" wx:for-index="n">
-          <navigator url="/pages/details/details?index={{n}}">
+          <navigator url="/pages/details/details?index={{item.yuedan_id}}">
             <view>
               <span class="point"></span>
               <view class="appointment-date">{{item.time.date}}
