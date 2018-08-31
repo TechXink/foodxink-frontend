@@ -4,11 +4,12 @@
 
 
   <view class='list'  bindtap="showUserInfo" >
-    <!-- 约单列表 -->
-    <view class="section appointment">
-      <view class="title">
-        我的约单
-        <!-- 用户信息 -->
+
+      <!-- 发现更多 -->
+
+    <view class="more">
+      <view class="title">发现约单
+              <!-- 用户信息 -->
         <view class="userinfo-s" bindtap="showUserInfo">
           <image id="avatar" catchtap="showUserInfo"  class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
           <view wx:if="{{openUserInfo}}" class="userinfo-t">
@@ -30,6 +31,33 @@
             </view>
           </view>
         </view>
+      </view>
+      <scroll-view scroll-x class="scroll-header">
+        <view wx:key="unique" class="scroll-view-item" wx:for="{{recommendList}}" wx:for-index="i">
+          <view wx:key="shop" wx:for="{{recommendList[i]}}" class='addrInfo-item' style="flex-direction:row;">
+            <view class="addrInfo-img">
+              <image src="https://foodninja.cloudxink.com{{item.image}}"></image>
+            </view>
+            <view class="addrInfo-tips">
+              <view class="addrInfo-res">{{item.title}}</view>
+              <view class='addrInfo-time'>{{item.time.date}} {{item.time.hour}}</view>
+              <view class='addrInfo-gps'>
+                <i class=".icon-location"></i> 距离悠乐汇{{item.gps}}m</view>
+            </view>
+            <view class="addrInfo-btn">
+              <navigator url="/pages/details/details?index={{item.id}}">查看</navigator>
+            </view>
+          </view>
+        </view>
+
+      </scroll-view>
+    </view>
+
+    <!-- 约单列表 -->
+    <view class="section appointment">
+      <view class="title">
+        我的约单
+
 
       </view>
       <view class="appointment-list">
@@ -66,30 +94,7 @@
       </view>
     </view>
 
-    <!-- 发现更多 -->
 
-    <view class="more">
-      <view class="title">发现更多</view>
-      <scroll-view scroll-x class="scroll-header">
-        <view wx:key="unique" class="scroll-view-item" wx:for="{{recommendList}}" wx:for-index="i">
-          <view wx:key="shop" wx:for="{{recommendList[i]}}" class='addrInfo-item' style="flex-direction:row;">
-            <view class="addrInfo-img">
-              <image src="https://foodninja.cloudxink.com{{item.image}}"></image>
-            </view>
-            <view class="addrInfo-tips">
-              <view class="addrInfo-res">{{item.title}}</view>
-              <view class='addrInfo-time'>{{item.time.date}} {{item.time.hour}}</view>
-              <view class='addrInfo-gps'>
-                <i class=".icon-location"></i> 距离悠乐汇{{item.gps}}m</view>
-            </view>
-            <view class="addrInfo-btn">
-              <navigator url="/pages/details/details?index={{item.id}}">查看</navigator>
-            </view>
-          </view>
-        </view>
-
-      </scroll-view>
-    </view>
 
   </view>
 
