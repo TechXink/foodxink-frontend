@@ -4,8 +4,8 @@ Page({
   /*页面的初始数据*/
   data: {
     api_token: '',
-    title: '',
-    description: '',
+    title: '...',
+    description: '...',
     date: '',
     fanTime: '__ : __',
     flagTime: '__ : __',
