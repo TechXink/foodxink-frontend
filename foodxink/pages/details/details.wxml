@@ -3,7 +3,7 @@
 
 <view class="container">
   <image class='detailsImg' src='{{ "https://foodninja.cloudxink.com/"+ appointlist.image[0] }}'></image>
-  <view class='detailsTime'>距离组团时间还剩：
+  <view class='detailsTime' wx:if="{{ifTimeOver!=1}}">距离组团时间还剩：
     <view>{{ thisTime.hour }}</view> : 
     <view>{{ thisTime.min }}</view> : 
     <view>{{ thisTime.sec }}</view>
@@ -12,7 +12,7 @@
   <view class='detailsText'>{{ appointlist.description}}</view>
   <view class='endTime'>
     <i class="icon-history"></i>
-    <text>   2018.08.08 19:30</text>
+    <text>   {{appointlist.time.date}}    {{appointlist.time.hour}}</text>
   </view>
   <view class='detailsSite'>
     <i class="icon-location"></i>
@@ -54,11 +54,24 @@
   </view> 
 
   <view wx:if="{{ifTimeOver==1}}" class='appointPerson' wx:key="txt" wx:for="{{ genyue }}" wx:for-index="n">
-    <image class='touxiang' src='https://foodninja.cloudxink.com/{{item.avatar_url }}'></image>
-    <view class='name'>
-      <text>{{ item.name }}</text>
-      <view>{{ item.time.hour }}</view>
+    <view class='hideName'>
+      <image class='touxiang' src='https://foodninja.cloudxink.com/{{item.avatar_url }}'></image>
+      <view class='name'>
+        <text>{{ item.name }}</text>
+        <view>{{ item.time.hour }}</view>
+      </view>
     </view>
+    
+    <view class='jiantou'>→</view>
+
+    <view class='realName'>
+      <image class='touxiang' src='https://foodninja.cloudxink.com/{{item.avatar_url }}'></image>
+      <view class='name'>
+        <text>{{ item.name }}</text>
+        <view>{{ item.time.hour }}</view>
+      </view>
+    </view>
+    
   </view>
   </scroll-view>
 </view>

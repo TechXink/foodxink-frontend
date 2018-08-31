@@ -53,6 +53,7 @@ Page({
         });
 
         let partUrl = 'https://foodninja.cloudxink.com/api/v1/participator/'+ options.index +'?api_token=' + res.data
+        console.log(partUrl)
         wx.request({
           url: partUrl,
           data: {
@@ -63,10 +64,11 @@ Page({
             'content-type': 'application/json' // 默认值
           },
           success: function (res) {
+            console.log('!!!!!',res)
             _this.setData({
               participator: res.data,
               genyue: res.data.genyue,
-              yuedan_id:res.data.sponsor[0].yuedan_id
+              yuedan_id:options.index
             })
             console.log('participator========', res.data);
           }
@@ -143,7 +145,7 @@ Page({
     wx.request({
       url: _url,
       data: {
-        "yuedan_id": _this.data.yuedan_id
+        "yuedan_id": this.data.yuedan_id
       },
       header: {
         'content-type': 'application/json' // 默认值
@@ -230,7 +232,7 @@ Page({
         _this.setData({
           ifTimeOver:1
         })
-        console.log(t)
+        // console.log(t)
       }
       //            var d=Math.floor(t/1000/60/60/24);
       var hour = Math.floor(t/1000/60/60);
