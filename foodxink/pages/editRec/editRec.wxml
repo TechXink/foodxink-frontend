@@ -1,21 +1,23 @@
 <!--pages/editRec/editRec.wxml-->
 <view class="container">
 
+  <image class='backimg' src='../../img/WechatIMG230.png'></image>
+
   <view class="section appointment appointment-info">
     <form bindsubmit='newrec'>
       
       <view class="inputField">
-        <label class="label">标题</label>
-        <input class="field" type="text" value="{{title}}" bindchange="bindTitleChange" placeholder='请输入标题...'/>
+        <label class="label">约单标题</label>
+        <input class="field" type="text" value="{{title}}" bindchange="bindTitleChange" placeholder='... ...'/>
       </view>
 
       <view class="inputField">
-        <label class="label">描述</label>
-        <textarea class="field" value="{{description}}" style="height: 5em" bindblur="bindDescriptionChange" placeholder='请输入描述...'/>
+        <label class="label">说点什么</label>
+        <textarea class="field" value="{{description}}" style="height: 5em" bindblur="bindDescriptionChange" placeholder='... ...'/>
       </view>
 
       <view class="inputField">
-        <view class="label">日期</view>
+        <view class="label">用餐日</view>
         <picker class="field" mode="date" value="{{date}}" bindchange="bindDateChange">
           <view class="">
             {{date}}
@@ -33,7 +35,7 @@
       </view>
 
       <view class="inputField">
-        <view class="label">开饭时间</view>
+        <view class="label">开餐时间</view>
         <picker class="field" mode="time" value="{{fanTime}}" bindchange="bindFanTimeChange">
           <view class="">
             {{fanTime}}
@@ -51,7 +53,7 @@
       <view class="inputField">
         <label class="label" for="title">图片</label>
         <view class="field images" >
-            <image wx:for="{{images}}" class="single" src="{{images[index]}}"></image>
+            <image wx:for="{{images}}" class="single" src="{{images[index]}}" bindtap='deleteImage' data-id='{{index}}'></image>
             <view class="singleButton" bindtap='selectImage'>+</view>
         </view>
       </view>
@@ -63,6 +65,7 @@
   </view>
 
   <view class="paddingUp">
-    <button class="addButton" type="primary" bindtap="postThis">发布</button>
+    <button class="addButton" type="primary" bindtap="postThis">发 布    
+    </button>
   </view>
 </view>

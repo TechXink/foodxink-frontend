@@ -1,19 +1,20 @@
 /* pages/editRec/editRec.wxss */
 
 .container {
-  background: #face0d23;
+  background: #FDFCF8;
   padding-top: 30px;
   padding-bottom: 120px;
   /*margin: 30rpx;*/
 }
 
 .appointment-info {
-  background: #fff;
+  background: #FDFCF8;
+  opacity: 0.9;
   font-size: 30rpx;
   border-radius: 14rpx;
   border-color: transparent;
-  box-shadow: 1px 2px 10px 2px rgba(170, 170, 170, 0.21);
-  margin: 30rpx;
+  box-shadow: 5px 5px 20px 5px rgba(234, 189, 0, 0.5);
+  margin: 50rpx;
 }
 
 .appointment {
@@ -21,18 +22,18 @@
 }
 
 .inputField {
-  padding: 10px;
+  padding: 13px;
   position: relative;
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
   -webkit-box-align: center;
-  border-bottom: 1px solid #e5e5e5;
+  /* border-bottom: 1px solid #e5e5e5; */
 }
 
 .inputField .label {
   width: 160rpx;
-  color: gray;
+  color: #130A22;
 }
 
 .inputField .field {
@@ -40,7 +41,7 @@
 }
 
 .paddingUp {
-  padding-top: 40rpx;
+  padding-top: 10rpx;
 }
 
 .images {
@@ -62,25 +63,36 @@
 .singleButton {
   text-align: center;
   font-size: 60rpx;
-  color: #face0d;
+  color: #130A22;
   margin: 3rpx;
   width: 100rpx;
   height: 100rpx;
-  border: 3px solid #face0d;
+  border: 3px solid #130A22;
   align-content: center;
   align-items: center;
 }
 
 .addButton {
   font-size: 32rpx;
-  background: #face0d!important;
-  margin-left: 30rpx;
-  margin-right: 30rpx;
+  background: #130A22!important;
+  margin-left: 50rpx;
+  margin-right: 50rpx;
+  opacity: 0.7;
+  border-color: transparent;
+  box-shadow: 5px 5px 20px 5px rgba(151, 123, 10, 0.5);
 }
 
 .message {
   padding: 20px;
-  color: red;
+  color: #C54A5F !important;
   font-size: 30rpx;
   text-align: center;
+  opacity: 1 !important;
+}
+
+.backimg{
+  width: 100%;
+  height: 800rpx;
+  position: fixed;
+  bottom: 0
 }

@@ -6,9 +6,9 @@ Page({
     api_token: '',
     title: '',
     description: '',
-    date: '请选择...',
-    fanTime: '00:00',
-    flagTime: '00:00',
+    date: '',
+    fanTime: '__ : __',
+    flagTime: '__ : __',
     close_time: Math.round(Date.parse(new Date()) / 1000),
     eat_time: Math.round(Date.parse(new Date()) / 1000),
     hasLocation: false,
@@ -132,38 +132,64 @@ Page({
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
       success: function (res) {
+        // var that = this;
         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
-        var tempFilePaths = that.data.images.concat(res.tempFilePaths);
+        // var tempFilePaths = that.data.images.concat(res.tempFilePaths);
+        console.log(res)
+        that.data.images.push(res.tempFilePaths[0])
+        // console.log('!!!!!!!!!========',that.data.images)
         that.setData({
-          images: tempFilePaths,
-          hideMessage: true
+          images:that.data.images,
+          hideMessage:true
         });
+        console.log("that.data.images",that.data.images)
         // 上传图片
         wx.uploadFile({
           url: 'https://foodninja.cloudxink.com/api/v1/yuedan/uploadimg?api_token=' + that.data.api_token, //接口
-          filePath: tempFilePaths[0],
+          filePath: res.tempFilePaths[0],
           name: 'upload-img',
           formData: {
           },
           success: function (res) {
-            console.log(res.data);
+            // console.log(res.data);
+            // let resData = JSON.parse(res.data)
             let resData = JSON.parse(res.data)
-            console.log(resData.imgUrl);
+            // console.log(resData.imgUrl);
             // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
-            var uploadedImages = that.data.imagesUrl.concat(resData.imgUrl);
+            // var uploadedImages = that.data.imagesUrl.concat(resData.imgUrl);
+            that.data.imagesUrl.push(resData.imgUrl);
             that.setData({
-              imagesUrl: uploadedImages
+              imagesUrl: that.data.imagesUrl
             });
             //do something
-            console.log(that.data);
+            console.log("that.data",that.data);
           },
           fail: function (error) {
-            console.log(error);
+            console.log("错误：",error);
           }
         })
         //console.log(res);
       }
     })
+  },
+
+  deleteImage: function(event) {
+    // console.log(event);
+    let n = event.currentTarget.dataset.id;
+    console.log(n);
+    // let leaveImagesUrl = this.data.imagesUrl;
+    // let leaveImages = this.data.images;
+    this.data.images.splice(n,1);
+    this.data.imagesUrl.splice(n,1);
+    // console.log(leaveImagesUrl);
+    // console.log(leaveImages);
+    this.setData({
+      // imagesUrl: leaveImagesUrl.splice(n,1),
+      // images: leaveImages.splice(n,1)
+      images:this.data.images,
+      imagesUrl:this.data.imagesUrl
+    });
+    console.log(this.data);
   },
 
   postThis: function () {
@@ -201,8 +227,8 @@ Page({
                 hideMessage: false
               });
             }
-            console.log(res.data);
-            console.log(thatData);
+            console.log("提交的数据： ",thatData);
+            console.log("接口返回： ", res.data);
           }
         });
       }
