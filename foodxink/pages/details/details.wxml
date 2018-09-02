@@ -11,11 +11,11 @@
   <view class='detailsTitle'>{{ appointlist.title}}</view>
   <view class='detailsText'>{{ appointlist.description}}</view>
   <view class='endTime'>
-    <i class="icon-history"></i>
+    <i class="iconfont icon-reloadtime"></i>
     <text>   {{appointlist.time.date}}    {{appointlist.time.hour}}</text>
   </view>
   <view class='detailsSite'>
-    <i class="icon-location"></i>
+    <i class="iconfont icon-location"></i>
     <text>{{ appointlist.location_name }}</text>
     <!-- <i class="icon-add detailsShare"></i> -->
   </view>
@@ -26,11 +26,12 @@
       <view>发起者</view>
     </view>
     <view class='genyue' bindtap='genYue' wx:if="{{participator.is_sponsor==0&&participator.is_genyue==0}}">
-      <i class="icon-add"></i>
+      <i class="iconfont icon-star"></i>
       <text>跟约</text>
     </view>
     <view class='genyue' bindtap='qxGenYue' wx:if="{{participator.is_sponsor==0&&participator.is_genyue==1}}">
-      <text>取消跟约</text>
+      <i class="iconfont icon-star-fill"></i>
+      <text>取消</text>
     </view>
     <view class='genyue'  wx:if="{{participator.is_sponsor==1}}">
       <text>{{  genyue.length }}人跟约</text>
@@ -53,7 +54,7 @@
     </view>
   </view> 
 
-  <view wx:if="{{ifTimeOver==1}}" class='appointPerson' wx:key="txt" wx:for="{{ genyue }}" wx:for-index="n">
+  <view wx:if="{{ifTimeOver==1}}" class='appointPerson historyPerson' wx:key="txt" wx:for="{{ genyue }}" wx:for-index="n">
     <view class='hideName'>
       <image class='touxiang' src='https://foodninja.cloudxink.com/{{item.avatar_url }}'></image>
       <view class='name'>
@@ -62,16 +63,16 @@
       </view>
     </view>
     
-    <view class='jiantou'>→</view>
+    <i class="iconfont icon-arrowright"></i>
 
     <view class='realName'>
-      <image class='touxiang' src='https://foodninja.cloudxink.com/{{item.avatar_url }}'></image>
+      <image class='touxiang' src='{{item.real_information.headimgurl }}'></image>
       <view class='name'>
-        <text>{{ item.name }}</text>
-        <view>{{ item.time.hour }}</view>
+        <text>{{ item.real_information.nickname }}</text>
       </view>
     </view>
     
+    <view class='fuyue'>赴约</view>
   </view>
   </scroll-view>
 </view>

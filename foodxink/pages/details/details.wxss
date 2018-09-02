@@ -1,5 +1,6 @@
 /* pages/details/details.wxss */
-@import "/icon/style.wxss";
+/* @import "/icon/style.wxss"; */
+@import "/icon/details.wxss";
 
 html{
   margin: 0;
@@ -39,6 +40,7 @@ body{
 }
 
 .detailsTitle{
+  width: 100%;
   padding: 45rpx 8% 30rpx 8%;
   font-weight: 600;
   font-size: 40rpx;
@@ -48,12 +50,12 @@ body{
   background: #fff;
 }
 .detailsText{
-  text-align: justify;
+  word-wrap:break-word;
   color: #666;
   font-size: 28rpx;
   line-height: 50rpx;
   background: #fff;
-  padding: 15rpx 8%;
+  padding: 45rpx 8% 30rpx 8%;
 }
 .endTime{
   background: #fff;
@@ -91,17 +93,19 @@ body{
 .keepAppointment>.name{
   margin-left: 40rpx;
   font-size: 35rpx;
+  line-height: 40rpx;
   text-align: center;
 }
 .keepAppointment>.name text{
   font-weight: 600;
 }
 .keepAppointment>.name view{
+  margin-top: 12rpx;
   background: #000;
   width: 120rpx;
-  height: 60rpx;
+  height: 40rpx;
   color: #fff;
-  line-height: 60rpx;
+  line-height: 40rpx;
   font-size: 28rpx;
   border-radius: 30rpx;
 }
@@ -150,4 +154,68 @@ body{
   font-size: 30rpx;
   color: #999;
   margin-top: 5rpx;
+}
+.historyPerson{
+  display: flex;
+  align-items:center;
+}
+.hideName{
+  display: flex;
+  align-items:center;
+  width: 180rpx;
+}
+.hideName> .touxiang{
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 40rpx;
+  margin-right: 12rpx;
+}
+.hideName> .name text{
+  font-size:24rpx;
+}
+.hideName> .name view{
+  font-size: 20rpx;
+  color: #666;
+}
+
+.realName{
+  display: flex;
+  align-items:center;
+  width: 180rpx;
+}
+.realName> .touxiang{
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 40rpx;
+  margin-right: 12rpx;
+}
+.realName> .name text{
+  font-size:24rpx;
+}
+.realName> .name view{
+  font-size: 20rpx;
+  color: #666;
+}
+
+.historyPerson> i{
+  display: block;
+  margin:0 30rpx;
+  width: 40rpx;
+  height: 12rpx;
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #333;
+}
+
+.fuyue{
+  width: 90rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  border: 5rpx solid rgba(234, 189, 0, 0.5);
+  border-radius: 20rpx;
+  font-size: 24rpx;
+  margin-left: 35rpx;
+  margin-top: 15rpx;
+  text-align: center;
+  color: rgba(234, 189, 0, 0.5);
 }
