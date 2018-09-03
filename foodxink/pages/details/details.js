@@ -11,6 +11,7 @@ Page({
     appointlist: [],
     participator:[],
     genyue:[],
+    sponsor:[],
     yuedan_id:'',
     thisTime:'',
     ifTimeOver:''
@@ -68,6 +69,7 @@ Page({
             _this.setData({
               participator: res.data,
               genyue: res.data.genyue,
+              sponsor:res.data.sponsor,
               yuedan_id:options.index
             })
             console.log('participator========', res.data);
@@ -166,7 +168,8 @@ Page({
         }
         if(res.data.genyue){
           _this.setData({
-            genyue:res.data.genyue
+            genyue:res.data.genyue,
+            sponsor: res.data.sponsor
           })
           
           _this.onLoad()
@@ -209,7 +212,8 @@ Page({
         }
         if (res.data.genyue) {
           _this.setData({
-            genyue: res.data.genyue
+            genyue: res.data.genyue,
+            sponsor: res.data.sponsor,
           })
           _this.onLoad()
         }
@@ -219,6 +223,30 @@ Page({
       }
     });
     
+  },
+  fuyueFun:function(event){
+    let uid = event.currentTarget.dataset.id;
+    console.log(uid)
+    var _this = this;
+    // console.log(e.target)
+    let _url = 'https://foodninja.cloudxink.com/api/v1/participator/join/' + this.data.yuedan_id + '?api_token=' + this.data.token
+    console.log(_url)
+    wx.request({
+      url: _url,
+      data: {
+        "id": _this.data.yuedan_id,
+        "user_id":uid
+      },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      method: "PUT",
+
+      success: function (res) {
+       
+      }
+    });
+
   },
   getCountDown:function(timestamp){
     var _this = this

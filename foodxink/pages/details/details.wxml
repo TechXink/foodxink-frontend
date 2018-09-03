@@ -54,6 +54,27 @@
     </view>
   </view> 
 
+   <view wx:if="{{ifTimeOver==1}}" class='appointPerson historyPerson' wx:key="txt" wx:for="{{ sponsor }}" wx:for-index="n">
+    <view class='hideName'>
+      <image class='touxiang' src='https://foodninja.cloudxink.com/{{item.avatar_url }}'></image>
+      <view class='name'>
+        <text>{{ item.name }}</text>
+        <view>{{ item.time.hour }}</view>
+      </view>
+    </view>
+    
+    <i class="iconfont icon-arrowright"></i>
+
+    <view class='realName'>
+      <image class='touxiang' src='{{item.real_information.headimgurl }}'></image>
+      <view class='name'>
+        <text>{{ item.real_information.nickname }}</text>
+      </view>
+    </view>
+    <view class='yifuyue' wx:if="{{item.is_join==1}}">已赴约</view>
+    <view class='fuyue' wx:if="{{item.is_join==0}}" data-id="{{item.user_id}}" bindtap='fuyueFun'>赴约</view>
+  </view>
+  
   <view wx:if="{{ifTimeOver==1}}" class='appointPerson historyPerson' wx:key="txt" wx:for="{{ genyue }}" wx:for-index="n">
     <view class='hideName'>
       <image class='touxiang' src='https://foodninja.cloudxink.com/{{item.avatar_url }}'></image>
@@ -71,8 +92,8 @@
         <text>{{ item.real_information.nickname }}</text>
       </view>
     </view>
-    
-    <view class='fuyue'>赴约</view>
+    <view class='yifuyue' wx:if="{{item.is_join==1}}">已赴约</view>
+    <view class='fuyue' wx:if="{{item.is_join==0}}" data-id="{{item.user_id}}" bindtap='fuyueFun'>赴约</view>
   </view>
   </scroll-view>
 </view>

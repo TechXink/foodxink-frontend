@@ -23,16 +23,16 @@ body{
   color: #fff;
   line-height: 70rpx;
   font-size: 25rpx;
-  margin-top: -10rpx;
+  margin-top: -15rpx;
   height: 70rpx;
-  background: #f5755a;
+  background: #face0d;
   display: flex;
 }
 .detailsTime >view{
   padding: 0 5rpx;
   height: 40rpx;
   background: #fff;
-  color: #f5755a;
+  color:#face0d;
   align-self:center;
   line-height: 40rpx;
   text-align: center;
@@ -101,7 +101,7 @@ body{
 }
 .keepAppointment>.name view{
   margin-top: 12rpx;
-  background: #000;
+  background: rgba(0, 0, 0, 0.9);
   width: 120rpx;
   height: 40rpx;
   color: #fff;
@@ -112,7 +112,7 @@ body{
 .keepAppointment>.genyue{
   width: 150rpx;
   height: 80rpx;
-  background: #f5755a;
+  background: #face0d;
   margin-left: 60rpx;
   align-self:center;
   border-radius: 40rpx;
@@ -218,4 +218,17 @@ body{
   margin-top: 15rpx;
   text-align: center;
   color: rgba(234, 189, 0, 0.5);
+}
+
+.yifuyue{
+  width: 90rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  border: 5rpx solid #666;
+  border-radius: 20rpx;
+  font-size: 24rpx;
+  margin-left: 35rpx;
+  margin-top: 15rpx;
+  text-align: center;
+  color: #666;
 }
